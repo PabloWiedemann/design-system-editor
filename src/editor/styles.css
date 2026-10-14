@@ -1,0 +1,157 @@
+/*
+ * The editor's own styles. Everything is prefixed (`dse:` classes,
+ * `--dse-*` variables) so the editor never collides with the repo it runs
+ * in: the repo's tokens can be edited and merged without touching the
+ * editor's chrome, and the repo's utilities never style the editor.
+ *
+ * Utilities are not in a cascade layer on purpose: repos often style bare
+ * elements (`button {}`, `* { margin }`) outside layers, which would beat
+ * layered utilities.
+ */
+@import 'tailwindcss/theme.css' prefix(dse);
+@import 'tailwindcss/utilities.css' prefix(dse);
+
+@source './';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+  /* ── Color ─────────────────────────────────────────────── */
+  --color-base-foreground: oklch(0.943 0 0);
+  --color-muted-foreground: oklch(0.715 0 0);
+  --color-subtle-foreground: oklch(0.538 0 0);
+
+  --color-card-background: oklch(0.227 0.002 286.247);
+  --color-card-background-hover: oklch(0.261 0.002 286.271);
+  --color-secondary-background: oklch(1 0 0 / 0.06);
+  --color-secondary-background-hover: oklch(1 0 0 / 0.1);
+
+  --color-inverted-background: oklch(0.943 0 0);
+  --color-inverted-background-hover: oklch(1 0 0);
+  --color-inverted-foreground: oklch(0.178 0 0);
+
+  --color-border-default: oklch(1 0 0 / 0.06);
+  --color-border-strong: oklch(1 0 0 / 0.12);
+  --color-border-focus: oklch(1 0 0 / 0.4);
+
+  --color-media-overlay: oklch(0 0 0 / 0.55);
+
+  --color-status-running: oklch(0.779 0.13 153.127);
+  --color-status-danger: oklch(0.52 0.133 25.633);
+
+  /* The one editor-only accent: selection, edit mode. */
+  --color-accent: oklch(0.733 0.137 262.863);
+
+  /* ── Type ──────────────────────────────────────────────── */
+  --text-ui: 13px;
+  --text-ui--line-height: 20px;
+  --text-heading: 16px;
+  --text-heading--line-height: 24px;
+  --text-title: 22px;
+  --text-title--line-height: 28px;
+  --text-display: 34px;
+  --text-display--line-height: 40px;
+
+  /* ── Radius ────────────────────────────────────────────── */
+  --radius-panel: 16px;
+  --radius-card: 12px;
+  --radius-control: 8px;
+  --radius-min: 4px;
+
+  /* ── Elevation ─────────────────────────────────────────── */
+  --shadow-elev:
+    inset 0 1px 0 oklch(1 0 0 / 0.07), 0 1px 2px oklch(0 0 0 / 0.35), 0 6px 18px oklch(0 0 0 / 0.28);
+  --shadow-elev-hover:
+    inset 0 1px 0 oklch(1 0 0 / 0.09), 0 2px 4px oklch(0 0 0 / 0.35),
+    0 10px 26px oklch(0 0 0 / 0.34);
+  --shadow-popover: inset 0 1px 0 oklch(1 0 0 / 0.07), 0 12px 32px oklch(0 0 0 / 0.45);
+  --shadow-highlight: inset 0 1px 0 oklch(1 0 0 / 0.06);
+
+  --blur-glass: 28px;
+
+  /* ── Motion ────────────────────────────────────────────── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-pop-in: dse-pop-in 160ms var(--ease-out-expo);
+  --animate-fade-in: dse-fade-in 160ms ease-out;
+
+  @keyframes dse-pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px) scale(0.98);
+    }
+  }
+  @keyframes dse-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
+/*
+ * Reset for the editor's own elements (and its floating surfaces), so the
+ * repo's base styles (`button { padding }`, `p { margin }`…) don't leak in.
+ * - Never inside specimen cells ([data-dse-mount]): the repo's components
+ *   keep the repo's own base styles there.
+ * - Element selectors (0,0,1) beat the repo's bare-element rules (this
+ *   file loads after the repo's CSS) but lose to the editor's utilities
+ *   (one class), so utilities always win.
+ */
+:where(.dse-root, .dse-float):where(:not([data-dse-mount] *)),
+:where(.dse-root, .dse-float) *:where(:not([data-dse-mount] *)),
+:where(.dse-root, .dse-float) *::before:where(:not([data-dse-mount] *)),
+:where(.dse-root, .dse-float) *::after:where(:not([data-dse-mount] *)) {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+:where(.dse-root, .dse-float)
+  :is(button, input, select, textarea, a, label, p, h1, h2, h3, h4, h5, h6, ul, ol, li, figure, figcaption, code, pre, span, div, section, header, nav, main, aside, footer, svg, img):where(:not([data-dse-mount] *)) {
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-transform: none;
+  box-shadow: none;
+  min-width: 0;
+  min-height: 0;
+  width: auto;
+  height: auto;
+}
+:where(.dse-root, .dse-float) :is(button, [role='button']):not(:disabled):where(:not([data-dse-mount] *)) {
+  cursor: pointer;
+}
+:where(.dse-root, .dse-float) :is(svg, img):where(:not([data-dse-mount] *)) {
+  display: block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+:where(.dse-root, .dse-float) :is(ul, ol):where(:not([data-dse-mount] *)) {
+  list-style: none;
+}
+:where(.dse-root, .dse-float) {
+  font-family: var(--dse-font-sans);
+  font-size: var(--dse-text-ui);
+  line-height: 1.4;
+  color: var(--dse-color-base-foreground);
+  -webkit-font-smoothing: antialiased;
+}
+/* Specimen cells render with the repo's own text defaults. */
+[data-dse-mount] {
+  font-family: var(--dse-host-font, inherit);
+  font-size: var(--dse-host-size, inherit);
+  line-height: var(--dse-host-leading, inherit);
+  color: var(--dse-host-color, inherit);
+  text-align: left;
+}
+.dse-root {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  background: var(--dse-color-card-background);
+}

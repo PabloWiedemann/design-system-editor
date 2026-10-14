@@ -1,0 +1,73 @@
+{
+  "name": "design-system-editor",
+  "version": "0.1.0",
+  "description": "A visual editor for Tailwind v4 design systems: browse and tweak tokens and components live in your own repo, then hand the changes to your coding agent as llm.txt.",
+  "type": "module",
+  "bin": {
+    "dse": "./bin/dse.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.mjs"
+    },
+    "./specimens": {
+      "types": "./src/specimens.d.ts",
+      "default": "./src/specimens.mjs"
+    },
+    "./stories": {
+      "types": "./src/stories.d.ts",
+      "default": "./src/stories.mjs"
+    },
+    "./adapters/vue": "./src/adapters/vue.mjs",
+    "./adapters/react": "./src/adapters/react.mjs",
+    "./editor": "./dist/editor/index.js",
+    "./editor.css": "./dist/editor/editor.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "src/index.mjs",
+    "src/index.d.ts",
+    "src/specimens.mjs",
+    "src/specimens.d.ts",
+    "src/stories.mjs",
+    "src/stories.d.ts",
+    "src/adapters",
+    "src/cli",
+    "src/shims",
+    "src/nuxt",
+    "skills"
+  ],
+  "scripts": {
+    "build": "vite build --config vite.editor.config.ts",
+    "dev:editor": "vite build --config vite.editor.config.ts --watch",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "jiti": "^2.4.2",
+    "tinyglobby": "^0.2.14",
+    "vite": "^7.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "@types/node": "^22.15.0",
+    "clsx": "^2.1.1",
+    "cva": "1.0.0-beta.4",
+    "lucide-vue-next": "^0.544.0",
+    "reka-ui": "^2.6.2",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2",
+    "vue": "^3.5.21",
+    "vue-tsc": "^3.0.7"
+  },
+  "license": "MIT",
+  "repository": "github:PabloWiedemann/design-system-editor"
+}

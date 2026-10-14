@@ -1,0 +1,8 @@
+node_modules
+.scratch
+.DS_Store
+*.log
+.dse-cache
+
+# Configs for private and work repos, kept on this machine only
+local-examples
