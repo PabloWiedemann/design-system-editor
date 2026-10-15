@@ -162,7 +162,7 @@ async function askAgent(): Promise<void> {
                 :unit="rule.param.unit"
                 :aria-label="`${rule.title}: ${rule.param.label}`"
                 :disabled="!settingOf(rule).on"
-                class="dse:w-32"
+                class="dse:min-w-32"
                 @update:model-value="(value: number) => setRule(rule, { value })"
               />
               <Button

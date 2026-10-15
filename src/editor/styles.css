@@ -123,6 +123,23 @@
   width: auto;
   height: auto;
 }
+/* Form controls: repos style them by attribute (`input[type='text']`,
+ * 0,1,1), which beats the rule above. Match that specificity for the box
+ * model only: the editor's inputs size and pad themselves through their
+ * field shell, never with utilities on the input itself. */
+:where(.dse-root, .dse-float)
+  :is(input, select, textarea):is([type], :not([type])):where(:not([data-dse-mount] *)) {
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  width: auto;
+  height: auto;
+  opacity: 1;
+}
 :where(.dse-root, .dse-float) :is(button, [role='button']):not(:disabled):where(:not([data-dse-mount] *)) {
   cursor: pointer;
 }

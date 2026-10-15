@@ -206,6 +206,11 @@ export function dsePlugin(ctx, { nuxt = false } = {}) {
         })
       server.middlewares.use(async (req, res, next) => {
         const url = new URL(req.url ?? '/', 'http://localhost')
+        // The bare server URL opens the editor when the app has no page there.
+        if (url.pathname === '/' && !existsSync(join(ctx.root, 'index.html'))) {
+          res.writeHead(302, { location: '/__dse/' })
+          return res.end()
+        }
         if (url.pathname !== '/__dse' && url.pathname !== '/__dse/') return next()
         try {
           const sys = ctx.systems.find((s) => s.id === url.searchParams.get('system')) ?? ctx.systems[0]

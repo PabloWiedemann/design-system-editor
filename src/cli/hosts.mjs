@@ -2,7 +2,7 @@
 // get a Vite server (the repo's own Vite and plugins); Nuxt repos run
 // Nuxt's dev server with the editor module added through overrides.
 // Nothing in the repo is modified.
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { dsePlugin } from './plugin.mjs'
 import { importFrom, packageDir } from './resolve.mjs'
@@ -164,7 +164,8 @@ export async function runVite(ctx) {
     configFile: repoConfig,
     plugins,
     clearScreen: false,
-    appType: existsSync(join(ctx.root, 'index.html')) ? 'spa' : 'custom',
+    // No index.html (an app with several pages): serve its .html files by path.
+    appType: existsSync(join(ctx.root, 'index.html')) ? 'spa' : readdirSync(ctx.root).some((f) => f.endsWith('.html')) ? 'mpa' : 'custom',
     resolve: { alias, dedupe: react ? ['react', 'react-dom'] : ['vue'] },
     define: {
       ...(react ? { 'process.env': JSON.stringify({ NODE_ENV: 'development', ...env }) } : {}),

@@ -37,11 +37,11 @@ const Be = {}, ds = [], fs = () => {
 };
 let Ua;
 const ei = () => Ua || (Ua = typeof globalThis < "u" ? globalThis : typeof self < "u" ? self : typeof window < "u" ? window : typeof global < "u" ? global : {});
-function Ie(e) {
+function Me(e) {
   if (be(e)) {
     const t = {};
     for (let n = 0; n < e.length; n++) {
-      const s = e[n], o = Ze(s) ? wm(s) : Ie(s);
+      const s = e[n], o = Ze(s) ? wm(s) : Me(s);
       if (o)
         for (const r in o)
           t[r] = o[r];
@@ -77,7 +77,7 @@ function Ee(e) {
 function Nt(e) {
   if (!e) return null;
   let { class: t, style: n } = e;
-  return t && !Ze(t) && (e.class = Ee(t)), n && (e.style = Ie(n)), e;
+  return t && !Ze(t) && (e.class = Ee(t)), n && (e.style = Me(n)), e;
 }
 const km = "itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,playsinline,readonly", _m = /* @__PURE__ */ Ll(km);
 function Kd(e) {
@@ -2782,9 +2782,9 @@ function Ih(e, t) {
       "value" in de && r(X, "value", null, de.value, K), (z = de.onVnodeBeforeMount) && Zt(z, U, _);
     }
     ye && ss(_, null, U, "beforeMount");
-    const qe = Rh(j, ce);
-    qe && ce.beforeEnter(X), s(X, P, N), ((z = de && de.onVnodeMounted) || qe || ye) && bt(() => {
-      z && Zt(z, U, _), qe && ce.enter(X), ye && ss(_, null, U, "mounted");
+    const Ie = Rh(j, ce);
+    Ie && ce.beforeEnter(X), s(X, P, N), ((z = de && de.onVnodeMounted) || Ie || ye) && bt(() => {
+      z && Zt(z, U, _), Ie && ce.enter(X), ye && ss(_, null, U, "mounted");
     }, j);
   }, S = (_, P, N, U, j) => {
     if (N && p(_, N), U)
@@ -2848,9 +2848,9 @@ function Ih(e, t) {
       if (X & 16)
         L(Z, te, ce, N, j);
       else if (X & 2 && te.class !== ce.class && r(Z, "class", null, ce.class, j), X & 4 && r(Z, "style", te.style, ce.style, j), X & 8) {
-        const qe = P.dynamicProps;
-        for (let Le = 0; Le < qe.length; Le++) {
-          const Ne = qe[Le], rt = te[Ne], mt = ce[Ne];
+        const Ie = P.dynamicProps;
+        for (let Le = 0; Le < Ie.length; Le++) {
+          const Ne = Ie[Le], rt = te[Ne], mt = ce[Ne];
           (mt !== rt || Ne === "value") && r(Z, Ne, rt, mt, j, N);
         }
       }
@@ -3007,7 +3007,7 @@ function Ih(e, t) {
   }, J = (_, P, N, U, j, K, ee) => {
     const Z = () => {
       if (_.isMounted) {
-        let { next: te, bu: ce, u: ye, parent: qe, vnode: Le } = _;
+        let { next: te, bu: ce, u: ye, parent: Ie, vnode: Le } = _;
         {
           const Xt = Uc(_);
           if (Xt) {
@@ -3020,7 +3020,7 @@ function Ih(e, t) {
           }
         }
         let Ne = te, rt;
-        os(_, !1), te ? (te.el = Le.el, ae(_, te, ee)) : te = Le, ce && vr(ce), (rt = te.props && te.props.onVnodeBeforeUpdate) && Zt(rt, qe, te, Le), os(_, !0);
+        os(_, !1), te ? (te.el = Le.el, ae(_, te, ee)) : te = Le, ce && vr(ce), (rt = te.props && te.props.onVnodeBeforeUpdate) && Zt(rt, Ie, te, Le), os(_, !0);
         const mt = su(_), Yt = _.subTree;
         _.subTree = mt, b(
           Yt,
@@ -3033,13 +3033,13 @@ function Ih(e, t) {
           j,
           K
         ), te.el = mt.el, Ne === null && $h(_, mt.el), ye && bt(ye, j), (rt = te.props && te.props.onVnodeUpdated) && bt(
-          () => Zt(rt, qe, te, Le),
+          () => Zt(rt, Ie, te, Le),
           j
         );
       } else {
         let te;
-        const { el: ce, props: ye } = P, { bm: qe, m: Le, parent: Ne, root: rt, type: mt } = _, Yt = Rs(P);
-        os(_, !1), qe && vr(qe), !Yt && (te = ye && ye.onVnodeBeforeMount) && Zt(te, Ne, P), os(_, !0);
+        const { el: ce, props: ye } = P, { bm: Ie, m: Le, parent: Ne, root: rt, type: mt } = _, Yt = Rs(P);
+        os(_, !1), Ie && vr(Ie), !Yt && (te = ye && ye.onVnodeBeforeMount) && Zt(te, Ne, P), os(_, !0);
         {
           rt.ce && rt.ce._hasShadowRoot() && rt.ce._injectChildStyle(
             mt,
@@ -3092,7 +3092,7 @@ function Ih(e, t) {
         );
         return;
       } else if (ce & 256) {
-        Me(
+        qe(
           z,
           te,
           N,
@@ -3126,7 +3126,7 @@ function Ih(e, t) {
       Z,
       X
     ));
-  }, Me = (_, P, N, U, j, K, ee, Z, X) => {
+  }, qe = (_, P, N, U, j, K, ee, Z, X) => {
     _ = _ || ds, P = P || ds;
     const z = _.length, de = P.length, te = Math.min(z, de);
     let ce;
@@ -3167,11 +3167,11 @@ function Ih(e, t) {
     const de = P.length;
     let te = _.length - 1, ce = de - 1;
     for (; z <= te && z <= ce; ) {
-      const ye = _[z], qe = P[z] = X ? wn(P[z]) : on(P[z]);
-      if (so(ye, qe))
+      const ye = _[z], Ie = P[z] = X ? wn(P[z]) : on(P[z]);
+      if (so(ye, Ie))
         b(
           ye,
-          qe,
+          Ie,
           N,
           null,
           j,
@@ -3185,11 +3185,11 @@ function Ih(e, t) {
       z++;
     }
     for (; z <= te && z <= ce; ) {
-      const ye = _[te], qe = P[ce] = X ? wn(P[ce]) : on(P[ce]);
-      if (so(ye, qe))
+      const ye = _[te], Ie = P[ce] = X ? wn(P[ce]) : on(P[ce]);
+      if (so(ye, Ie))
         b(
           ye,
-          qe,
+          Ie,
           N,
           null,
           j,
@@ -3204,13 +3204,13 @@ function Ih(e, t) {
     }
     if (z > te) {
       if (z <= ce) {
-        const ye = ce + 1, qe = ye < de ? P[ye].el : U;
+        const ye = ce + 1, Ie = ye < de ? P[ye].el : U;
         for (; z <= ce; )
           b(
             null,
             P[z] = X ? wn(P[z]) : on(P[z]),
             N,
-            qe,
+            Ie,
             j,
             K,
             ee,
@@ -3222,13 +3222,13 @@ function Ih(e, t) {
       for (; z <= te; )
         He(_[z], j, K, !0), z++;
     else {
-      const ye = z, qe = z, Le = /* @__PURE__ */ new Map();
-      for (z = qe; z <= ce; z++) {
+      const ye = z, Ie = z, Le = /* @__PURE__ */ new Map();
+      for (z = Ie; z <= ce; z++) {
         const Tt = P[z] = X ? wn(P[z]) : on(P[z]);
         Tt.key != null && Le.set(Tt.key, z);
       }
       let Ne, rt = 0;
-      const mt = ce - qe + 1;
+      const mt = ce - Ie + 1;
       let Yt = !1, Xt = 0;
       const to = new Array(mt);
       for (z = 0; z < mt; z++) to[z] = 0;
@@ -3242,12 +3242,12 @@ function Ih(e, t) {
         if (Tt.key != null)
           Jt = Le.get(Tt.key);
         else
-          for (Ne = qe; Ne <= ce; Ne++)
-            if (to[Ne - qe] === 0 && so(Tt, P[Ne])) {
+          for (Ne = Ie; Ne <= ce; Ne++)
+            if (to[Ne - Ie] === 0 && so(Tt, P[Ne])) {
               Jt = Ne;
               break;
             }
-        Jt === void 0 ? He(Tt, j, K, !0) : (to[Jt - qe] = z + 1, Jt >= Xt ? Xt = Jt : Yt = !0, b(
+        Jt === void 0 ? He(Tt, j, K, !0) : (to[Jt - Ie] = z + 1, Jt >= Xt ? Xt = Jt : Yt = !0, b(
           Tt,
           P[Jt],
           N,
@@ -3261,7 +3261,7 @@ function Ih(e, t) {
       }
       const za = Yt ? Dh(to) : ds;
       for (Ne = za.length - 1, z = mt - 1; z >= 0; z--) {
-        const Tt = qe + z, Jt = P[Tt], ja = P[Tt + 1], Ka = Tt + 1 < de ? (
+        const Tt = Ie + z, Jt = P[Tt], ja = P[Tt + 1], Ka = Tt + 1 < de ? (
           // #13559, #14173 fallback to el placeholder for unresolved async component
           ja.el || gl(ja)
         ) : U;
@@ -3307,18 +3307,18 @@ function Ih(e, t) {
       if (U === 0)
         Z.persisted && !K[Di] ? s(K, P, N) : (Z.beforeEnter(K), s(K, P, N), bt(() => Z.enter(K), j));
       else {
-        const { leave: te, delayLeave: ce, afterLeave: ye } = Z, qe = () => {
+        const { leave: te, delayLeave: ce, afterLeave: ye } = Z, Ie = () => {
           _.ctx.isUnmounted ? o(K) : s(K, P, N);
         }, Le = () => {
           const Ne = K._isLeaving || !!K[Di];
           K._isLeaving && K[Di](
             !0
             /* cancelled */
-          ), Z.persisted && !Ne ? qe() : te(K, () => {
-            qe(), ye && ye();
+          ), Z.persisted && !Ne ? Ie() : te(K, () => {
+            Ie(), ye && ye();
           });
         };
-        ce ? ce(K, qe, Le) : Le();
+        ce ? ce(K, Ie, Le) : Le();
       }
     else
       s(K, P, N);
@@ -3333,7 +3333,7 @@ function Ih(e, t) {
       patchFlag: te,
       dirs: ce,
       cacheIndex: ye,
-      memo: qe
+      memo: Ie
     } = _;
     if ((te === -2 || z && z.hasOnce) && (j = !1), Z != null && (Tn(), wo(Z, null, N, _, !0), An()), ye != null && (!_.ctx || _.ctx === P) && (P.renderCache[ye] = void 0), de & 256) {
       P.ctx.deactivate(_);
@@ -3368,7 +3368,7 @@ function Ih(e, t) {
         !0
       ) : (K === W && te & 384 || !j && de & 16) && Oe(X, P, N), U && we(_);
     }
-    const mt = qe != null && ye == null;
+    const mt = Ie != null && ye == null;
     (Ne && (rt = ee && ee.onVnodeUnmounted) || Le || mt) && bt(() => {
       rt && Zt(rt, P, _), Le && ss(_, null, P, "unmounted"), mt && (_.el = null);
     }, N);
@@ -3604,7 +3604,7 @@ function Bh(e, t = null, n = null, s = 0, o = null, r = !1) {
   if (Uh(e) && (e = e.__vccOpts), t) {
     t = gn(t);
     let { class: l, style: u } = t;
-    l && !Ze(l) && (t.class = Ee(l)), je(u) && (/* @__PURE__ */ li(u) && !be(u) && (u = zt({}, u)), t.style = Ie(u));
+    l && !Ze(l) && (t.class = Ee(l)), je(u) && (/* @__PURE__ */ li(u) && !be(u) && (u = zt({}, u)), t.style = Me(u));
   }
   const i = Ze(e) ? 1 : Wc(e) ? 128 : di(e) ? 64 : je(e) ? 4 : De(e) ? 2 : 0;
   return T(
@@ -3724,7 +3724,7 @@ function ue(...e) {
       if (o === "class")
         t.class !== s.class && (t.class = Ee([t.class, s.class]));
       else if (o === "style")
-        t.style = Ie([t.style, s.style]);
+        t.style = Me([t.style, s.style]);
       else if (Yr(o)) {
         const r = t[o], i = s[o];
         i && r !== i && !(be(r) && r.includes(i)) ? t[o] = r ? [].concat(r, i) : i : i == null && r == null && // mergeProps({ 'onUpdate:modelValue': undefined }) should not retain
@@ -5959,7 +5959,7 @@ var Wv = /* @__PURE__ */ V({
       "as-child": e.asChild,
       as: e.as,
       "data-dismissable-layer": "",
-      style: Ie({ pointerEvents: d.value ? c.value ? "auto" : "none" : void 0 }),
+      style: Me({ pointerEvents: d.value ? c.value ? "auto" : "none" : void 0 }),
       onFocusCapture: a(m).onFocusCapture,
       onBlurCapture: a(m).onBlurCapture,
       onPointerdownCapture: a(f).onPointerDownCapture
@@ -7357,13 +7357,13 @@ const Jy = 50, Zy = async (e, t, n) => {
               var ie;
               const ae = (ie = I.filter(($e) => {
                 if ($) {
-                  const Me = rn($e.placement);
-                  return Me === y || // Create a bias to the `y` side axis due to horizontal
+                  const qe = rn($e.placement);
+                  return qe === y || // Create a bias to the `y` side axis due to horizontal
                   // reading directions favoring greater width.
-                  Me === "y";
+                  qe === "y";
                 }
                 return !0;
-              }).map(($e) => [$e.placement, $e.overflows.filter((Me) => Me > 0).reduce((Me, ne) => Me + ne, 0)]).sort(($e, Me) => $e[1] - Me[1])[0]) == null ? void 0 : ie[0];
+              }).map(($e) => [$e.placement, $e.overflows.filter((qe) => qe > 0).reduce((qe, ne) => qe + ne, 0)]).sort(($e, qe) => $e[1] - qe[1])[0]) == null ? void 0 : ie[0];
               ae && (J = ae);
               break;
             }
@@ -8366,8 +8366,8 @@ var Vb = /* @__PURE__ */ V({
       Pb({
         ...b.value,
         apply: ({ elements: ie, rects: ge, availableWidth: H, availableHeight: J }) => {
-          const { width: ae, height: $e } = ge.reference, Me = ie.floating.style;
-          Me.setProperty("--reka-popper-available-width", `${H}px`), Me.setProperty("--reka-popper-available-height", `${J}px`), Me.setProperty("--reka-popper-anchor-width", `${ae}px`), Me.setProperty("--reka-popper-anchor-height", `${$e}px`);
+          const { width: ae, height: $e } = ge.reference, qe = ie.floating.style;
+          qe.setProperty("--reka-popper-available-width", `${H}px`), qe.setProperty("--reka-popper-available-height", `${J}px`), qe.setProperty("--reka-popper-anchor-width", `${ae}px`), qe.setProperty("--reka-popper-anchor-height", `${$e}px`);
         }
       }),
       d.value && Db({
@@ -8414,7 +8414,7 @@ var Vb = /* @__PURE__ */ V({
       ref: u,
       "data-reka-popper-content-wrapper": "",
       dir: a(l),
-      style: Ie({
+      style: Me({
         ...a(v),
         transform: a(F) ? a(v).transform : "translate(0, -200%)",
         minWidth: "max-content",
@@ -8810,7 +8810,7 @@ var tx = /* @__PURE__ */ V({
       ref: a(u),
       dir: a(i),
       "data-orientation": "horizontal",
-      style: Ie({ "--reka-slider-thumb-transform": !p.value && a(c).thumbAlignment.value === "overflow" ? "translateX(50%)" : "translateX(-50%)" }),
+      style: Me({ "--reka-slider-thumb-transform": !p.value && a(c).thumbAlignment.value === "overflow" ? "translateX(50%)" : "translateX(-50%)" }),
       onSlideStart: v[0] || (v[0] = (C) => {
         const F = g(C, !0);
         s("slideStart", F);
@@ -8874,7 +8874,7 @@ var tx = /* @__PURE__ */ V({
     }), (x, y) => (h(), D(Wf, {
       ref: a(u),
       "data-orientation": "vertical",
-      style: Ie({ "--reka-slider-thumb-transform": !m.value && a(l).thumbAlignment.value === "overflow" ? "translateY(-50%)" : "translateY(50%)" }),
+      style: Me({ "--reka-slider-thumb-transform": !m.value && a(l).thumbAlignment.value === "overflow" ? "translateY(-50%)" : "translateY(50%)" }),
       onSlideStart: y[0] || (y[0] = (v) => {
         const C = p(v, !0);
         s("slideStart", C);
@@ -9031,8 +9031,8 @@ var ix = /* @__PURE__ */ V({
         onEndKeyDown: L[5] || (L[5] = (se) => !a(d) && k(a(r), y.value.length - 1, { commit: !0 })),
         onStepKeyDown: L[6] || (L[6] = (se, ie) => {
           if (!a(d)) {
-            const J = a(Lf).includes(se.key) || se.shiftKey && a(zf).includes(se.key) ? 10 : 1, ae = v.value, $e = y.value[ae], Me = a(i) * J * ie;
-            k($e + Me, ae, { commit: !0 });
+            const J = a(Lf).includes(se.key) || se.shiftKey && a(zf).includes(se.key) ? 10 : 1, ae = v.value, $e = y.value[ae], qe = a(i) * J * ie;
+            k($e + qe, ae, { commit: !0 });
           }
         })
       }), {
@@ -9130,7 +9130,7 @@ var ix = /* @__PURE__ */ V({
       "data-orientation": a(t).orientation.value,
       "as-child": e.asChild,
       as: e.as,
-      style: Ie({
+      style: Me({
         [a(n).startEdge.value]: `${o.value}%`,
         [a(n).endEdge.value]: `${r.value}%`
       })
@@ -9496,7 +9496,7 @@ var _x = /* @__PURE__ */ V({
     }
     function L(H) {
       if (H.defaultPrevented) return;
-      const J = H.target, ae = J.closest("[data-reka-menu-content]") === H.currentTarget, $e = ["input", "textarea"].includes(J.tagName.toLowerCase()), Me = H.ctrlKey || H.altKey || H.metaKey, ne = H.key.length === 1, tt = Su(H, Ge(), y.value, {
+      const J = H.target, ae = J.closest("[data-reka-menu-content]") === H.currentTarget, $e = ["input", "textarea"].includes(J.tagName.toLowerCase()), qe = H.ctrlKey || H.altKey || H.metaKey, ne = H.key.length === 1, tt = Su(H, Ge(), y.value, {
         loop: u.value,
         arrowKeyOptions: "vertical",
         dir: r?.dir.value,
@@ -9506,7 +9506,7 @@ var _x = /* @__PURE__ */ V({
       if (tt) return tt?.focus();
       if (H.code === "Space") return;
       const He = w.value?.getItems() ?? [];
-      if (ae && (H.key === "Tab" && r.modal.value && H.preventDefault(), !Me && ne && !$e && v(H.key, He)), H.target !== y.value || !ry.includes(H.key)) return;
+      if (ae && (H.key === "Tab" && r.modal.value && H.preventDefault(), !qe && ne && !$e && v(H.key, He)), H.target !== y.value || !ry.includes(H.key)) return;
       H.preventDefault();
       const we = [...He.map((Pe) => Pe.ref)];
       kf.includes(H.key) && we.reverse(), Cl(we);
@@ -10871,7 +10871,7 @@ var sw = /* @__PURE__ */ V({
       we === "min" && u.value !== void 0 ? x.value = tt(u.value) : we === "max" && d.value !== void 0 && (x.value = tt(d.value));
     }
     const ge = Yu(C, p), H = tw(C, p), J = q(() => ge.resolvedOptions().maximumFractionDigits > 0 ? "decimal" : "numeric"), ae = Yu(C, p), $e = q(() => Fs(x.value) || isNaN(x.value) ? "" : ae.format(x.value));
-    function Me(we) {
+    function qe(we) {
       return m.value ? H.isValidPartialNumber(we) : H.isValidPartialNumber(we, u.value, d.value);
     }
     function ne(we) {
@@ -10895,7 +10895,7 @@ var sw = /* @__PURE__ */ V({
       onInputElement: (we) => $.value = we,
       textValue: $e,
       readonly: r,
-      validate: Me,
+      validate: qe,
       applyInputValue: He,
       disabled: o,
       disableWheelChange: i,
@@ -11772,11 +11772,11 @@ var $w = /* @__PURE__ */ V({
           const Xe = C.right - $.right, at = window.innerWidth - F.right - Xe, ke = window.innerWidth - v.right - at, _t = v.width + ke, _ = Math.max(_t, C.width), P = window.innerWidth - Kt, N = Ls(at, Kt, Math.max(Kt, P - _));
           d.value.style.minWidth = `${_t}px`, d.value.style.right = `${N}px`;
         }
-        const S = o().map((Xe) => Xe.ref), k = window.innerHeight - Kt * 2, M = m.value.scrollHeight, I = window.getComputedStyle(f.value), L = Number.parseInt(I.borderTopWidth, 10), se = Number.parseInt(I.paddingTop, 10), ie = Number.parseInt(I.borderBottomWidth, 10), ge = Number.parseInt(I.paddingBottom, 10), H = L + se + M + ge + ie, J = Math.min(p.value.offsetHeight * 5, H), ae = window.getComputedStyle(m.value), $e = Number.parseInt(ae.paddingTop, 10), Me = Number.parseInt(ae.paddingBottom, 10), ne = v.top + v.height / 2 - Kt, tt = k - ne, He = p.value.offsetHeight / 2, we = p.value.offsetTop + He, Pe = L + se + we, Fe = H - Pe;
+        const S = o().map((Xe) => Xe.ref), k = window.innerHeight - Kt * 2, M = m.value.scrollHeight, I = window.getComputedStyle(f.value), L = Number.parseInt(I.borderTopWidth, 10), se = Number.parseInt(I.paddingTop, 10), ie = Number.parseInt(I.borderBottomWidth, 10), ge = Number.parseInt(I.paddingBottom, 10), H = L + se + M + ge + ie, J = Math.min(p.value.offsetHeight * 5, H), ae = window.getComputedStyle(m.value), $e = Number.parseInt(ae.paddingTop, 10), qe = Number.parseInt(ae.paddingBottom, 10), ne = v.top + v.height / 2 - Kt, tt = k - ne, He = p.value.offsetHeight / 2, we = p.value.offsetTop + He, Pe = L + se + we, Fe = H - Pe;
         if (Pe <= ne) {
           const Xe = p.value === S.at(-1);
           d.value.style.bottom = "0px";
-          const at = f.value.clientHeight - m.value.offsetTop - m.value.offsetHeight, ke = Math.max(tt, He + (Xe ? Me : 0) + at + ie), _t = Pe + ke;
+          const at = f.value.clientHeight - m.value.offsetTop - m.value.offsetHeight, ke = Math.max(tt, He + (Xe ? qe : 0) + at + ie), _t = Pe + ke;
           d.value.style.height = `${_t}px`;
         } else {
           const Xe = p.value === S[0];
@@ -11803,7 +11803,7 @@ var $w = /* @__PURE__ */ V({
     }), (v, C) => (h(), A("div", {
       ref_key: "contentWrapperElement",
       ref: d,
-      style: Ie({
+      style: Me({
         display: "flex",
         flexDirection: "column",
         position: "fixed",
@@ -12988,14 +12988,14 @@ var m0 = /* @__PURE__ */ V({
         }, ["left"])),
         onPointermove: I[1] || (I[1] = (L) => {
           if (a(l).disableSwipe.value || !u.value) return;
-          const se = L.clientX - u.value.x, ie = L.clientY - u.value.y, ge = !!d.value, H = ["left", "right"].includes(a(l).swipeDirection.value), J = ["left", "up"].includes(a(l).swipeDirection.value) ? Math.min : Math.max, ae = H ? J(0, se) : 0, $e = H ? 0 : J(0, ie), Me = L.pointerType === "touch" ? 10 : 2, ne = {
+          const se = L.clientX - u.value.x, ie = L.clientY - u.value.y, ge = !!d.value, H = ["left", "right"].includes(a(l).swipeDirection.value), J = ["left", "up"].includes(a(l).swipeDirection.value) ? Math.min : Math.max, ae = H ? J(0, se) : 0, $e = H ? 0 : J(0, ie), qe = L.pointerType === "touch" ? 10 : 2, ne = {
             x: ae,
             y: $e
           }, tt = {
             originalEvent: L,
             delta: ne
           };
-          ge ? (d.value = ne, a(ur)(a(u0), (He) => s("swipeMove", He), tt)) : a(Qu)(ne, a(l).swipeDirection.value, Me) ? (d.value = ne, a(ur)(a(a0), (He) => s("swipeStart", He), tt), L.target.setPointerCapture(L.pointerId)) : (Math.abs(se) > Me || Math.abs(ie) > Me) && (u.value = null);
+          ge ? (d.value = ne, a(ur)(a(u0), (He) => s("swipeMove", He), tt)) : a(Qu)(ne, a(l).swipeDirection.value, qe) ? (d.value = ne, a(ur)(a(a0), (He) => s("swipeStart", He), tt), L.target.setPointerCapture(L.pointerId)) : (Math.abs(se) > qe || Math.abs(ie) > qe) && (u.value = null);
         }),
         onPointerup: I[2] || (I[2] = (L) => {
           if (a(l).disableSwipe.value) return;
@@ -13247,7 +13247,7 @@ var m0 = /* @__PURE__ */ V({
               c.value?.focus();
               return;
             }
-            const ae = w({ tabbingDirection: ge ? "backwards" : "forwards" }), $e = ae.findIndex((Me) => Me === ie);
+            const ae = w({ tabbingDirection: ge ? "backwards" : "forwards" }), $e = ae.findIndex((qe) => qe === ie);
             br(ae.slice($e + 1)) ? I.preventDefault() : ge ? c.value?.focus() : f.value?.focus();
           }
         };
@@ -13267,7 +13267,7 @@ var m0 = /* @__PURE__ */ V({
       role: "region",
       "aria-label": typeof a(s) == "string" ? a(s).replace("{hotkey}", g.value) : a(s)(g.value),
       tabindex: "-1",
-      style: Ie({ pointerEvents: d.value ? void 0 : "none" })
+      style: Me({ pointerEvents: d.value ? void 0 : "none" })
     }, {
       default: E(() => [
         d.value ? (h(), D(ed, {
@@ -14414,7 +14414,7 @@ const K0 = (e, t) => {
     "left-bottom"
   ], F = () => [...C(), re, oe], $ = () => ["auto", "hidden", "clip", "visible", "scroll"], S = () => ["auto", "contain", "none"], k = () => [re, oe, u], M = () => [Rn, "full", "auto", ...k()], I = () => [Qt, "none", "subgrid", re, oe], L = () => ["auto", {
     span: ["full", Qt, re, oe]
-  }, Qt, re, oe], se = () => [Qt, "auto", re, oe], ie = () => ["auto", "min", "max", "fr", re, oe], ge = () => ["start", "end", "center", "between", "around", "evenly", "stretch", "baseline", "center-safe", "end-safe"], H = () => ["start", "end", "center", "stretch", "center-safe", "end-safe"], J = () => ["auto", ...k()], ae = () => [Rn, "auto", "full", "dvw", "dvh", "lvw", "lvh", "svw", "svh", "min", "max", "fit", ...k()], $e = () => [l, Rn, "screen", "full", "dvw", "lvw", "svw", "min", "max", "fit", ...k()], Me = () => [Rn, "screen", "full", "lh", "dvh", "lvh", "svh", "min", "max", "fit", ...k()], ne = () => [e, re, oe], tt = () => [...C(), ad, ld, {
+  }, Qt, re, oe], se = () => [Qt, "auto", re, oe], ie = () => ["auto", "min", "max", "fr", re, oe], ge = () => ["start", "end", "center", "between", "around", "evenly", "stretch", "baseline", "center-safe", "end-safe"], H = () => ["start", "end", "center", "stretch", "center-safe", "end-safe"], J = () => ["auto", ...k()], ae = () => [Rn, "auto", "full", "dvw", "dvh", "lvw", "lvh", "svw", "svh", "min", "max", "fit", ...k()], $e = () => [l, Rn, "screen", "full", "dvw", "lvw", "svw", "min", "max", "fit", ...k()], qe = () => [Rn, "screen", "full", "lh", "dvh", "lvh", "svh", "min", "max", "fit", ...k()], ne = () => [e, re, oe], tt = () => [...C(), ad, ld, {
     position: [re, oe]
   }], He = () => ["no-repeat", {
     repeat: ["", "x", "y", "space", "round"]
@@ -15153,21 +15153,21 @@ const K0 = (e, t) => {
        * @see https://tailwindcss.com/docs/block-size
        */
       "block-size": [{
-        block: ["auto", ...Me()]
+        block: ["auto", ...qe()]
       }],
       /**
        * Min-Block Size
        * @see https://tailwindcss.com/docs/min-block-size
        */
       "min-block-size": [{
-        "min-block": ["auto", ...Me()]
+        "min-block": ["auto", ...qe()]
       }],
       /**
        * Max-Block Size
        * @see https://tailwindcss.com/docs/max-block-size
        */
       "max-block-size": [{
-        "max-block": ["none", ...Me()]
+        "max-block": ["none", ...qe()]
       }],
       /**
        * Width
@@ -17921,7 +17921,7 @@ const ck = ["title"], fk = { class: "dse:truncate" }, pk = {
       e.token.group === "color" ? (h(), A("span", {
         key: 0,
         class: "dse:size-3 dse:shrink-0 dse:rounded-min dse:border dse:border-border-strong",
-        style: Ie({ background: a(le)(e.token) })
+        style: Me({ background: a(le)(e.token) })
       }, null, 4)) : Y("", !0),
       T("span", fk, R(a(me)(e.token)), 1),
       a(Wn)(e.token) ? (h(), A("span", pk)) : Y("", !0)
@@ -18372,13 +18372,18 @@ const Ek = { class: "dse:flex dse:items-center dse:gap-2" }, Tk = { class: "dse:
   setup(e) {
     const t = Us(e, "modelValue"), n = q({
       get: () => t.value,
-      set: (s) => {
-        s !== void 0 && Number.isFinite(s) && (t.value = s);
+      set: (o) => {
+        o !== void 0 && Number.isFinite(o) && (t.value = o);
       }
-    });
-    return (s, o) => (h(), D(a(ow), {
+    }), s = q(
+      () => Math.max(
+        1,
+        ...[e.min, e.max, e.step, t.value].filter((o) => typeof o == "number" && Number.isFinite(o)).map((o) => String(o).length)
+      )
+    );
+    return (o, r) => (h(), D(a(ow), {
       modelValue: n.value,
-      "onUpdate:modelValue": o[0] || (o[0] = (r) => n.value = r),
+      "onUpdate:modelValue": r[0] || (r[0] = (i) => n.value = i),
       min: e.min,
       max: e.max,
       step: e.step,
@@ -18396,8 +18401,9 @@ const Ek = { class: "dse:flex dse:items-center dse:gap-2" }, Tk = { class: "dse:
         }),
         O(a(dw), {
           "aria-label": e.ariaLabel,
-          class: Ee(a(st)(a(Kp), "dse:w-0 dse:text-center dse:tabular-nums"))
-        }, null, 8, ["aria-label", "class"]),
+          class: Ee(a(st)(a(Kp), "dse:flex-[1_0_auto] dse:text-center dse:tabular-nums")),
+          style: Me({ width: `${s.value + 1}ch` })
+        }, null, 8, ["aria-label", "class", "style"]),
         e.unit ? (h(), A("span", Ok, R(e.unit), 1)) : Y("", !0),
         O(a(aw), {
           class: Ee(yd)
@@ -18486,7 +18492,7 @@ const Ek = { class: "dse:flex dse:items-center dse:gap-2" }, Tk = { class: "dse:
                         o.swatch ? (h(), A("span", {
                           key: 0,
                           class: "dse:size-4 dse:shrink-0 dse:rounded-min dse:border dse:border-border-strong",
-                          style: Ie({ background: o.swatch })
+                          style: Me({ background: o.swatch })
                         }, null, 4)) : Y("", !0),
                         O(a(Nw), null, {
                           default: E(() => [
@@ -19270,7 +19276,7 @@ const l_ = {
                   unit: p.param.unit,
                   "aria-label": `${p.title}: ${p.param.label}`,
                   disabled: !a(tn)(p).on,
-                  class: "dse:w-32",
+                  class: "dse:min-w-32",
                   "onUpdate:modelValue": (g) => a(ol)(p, { value: g })
                 }, null, 8, ["model-value", "min", "max", "step", "unit", "aria-label", "disabled", "onUpdate:modelValue"]),
                 a(tn)(p).value !== a(Is)(p).value ? (h(), D(Te, {
@@ -19655,7 +19661,7 @@ const l_ = {
     const n = Us(e, "modelValue"), s = /* @__PURE__ */ B();
     return t({ focus: () => s.value?.focus(), select: () => s.value?.select() }), (o, r) => (h(), A("label", {
       class: Ee(a(st)(a(Ia)({ size: e.size }), "dse:cursor-text", e.class)),
-      style: Ie(o.$attrs.style)
+      style: Me(o.$attrs.style)
     }, [
       G(o.$slots, "leading"),
       $r(T("input", ue({
@@ -20647,7 +20653,7 @@ const zC = { class: "dse:mb-2 dse:flex dse:items-baseline dse:justify-between" }
                   l(M).group === "color" ? (h(), A("span", {
                     key: 0,
                     class: "dse:size-6 dse:shrink-0 dse:rounded-control dse:border dse:border-border-strong",
-                    style: Ie({ background: a(le)(l(M)) })
+                    style: Me({ background: a(le)(l(M)) })
                   }, null, 4)) : Y("", !0),
                   O(xs, {
                     "model-value": l(M).name,
@@ -20796,14 +20802,14 @@ const zC = { class: "dse:mb-2 dse:flex dse:items-baseline dse:justify-between" }
       T("div", $S, [
         T("span", {
           class: "dse:flex dse:flex-1 dse:items-end dse:p-1.5 dse:text-ui dse:text-muted-foreground",
-          style: Ie({ background: e.token.value }),
+          style: Me({ background: e.token.value }),
           title: `Before: ${o.value ? a(ao)(o.value) : e.token.value}`
         }, [...f[2] || (f[2] = [
           T("span", { class: "dse:rounded-min dse:bg-media-overlay dse:px-1" }, "before", -1)
         ])], 12, ES),
         T("span", {
           class: "dse:flex dse:flex-1 dse:items-end dse:justify-end dse:p-1.5 dse:text-ui dse:text-muted-foreground",
-          style: Ie({ background: t.value }),
+          style: Me({ background: t.value }),
           title: `Now: ${t.value}`
         }, [...f[3] || (f[3] = [
           T("span", { class: "dse:rounded-min dse:bg-media-overlay dse:px-1" }, "now", -1)
@@ -20841,7 +20847,7 @@ const zC = { class: "dse:mb-2 dse:flex dse:items-baseline dse:justify-between" }
             default: E(() => [
               O(a(Yf), {
                 class: "dse:relative dse:h-2 dse:grow dse:rounded-full dse:ring-1 dse:ring-border-default dse:ring-inset",
-                style: Ie({ background: m.track })
+                style: Me({ background: m.track })
               }, null, 8, ["style"]),
               O(a(Gf), {
                 "aria-label": `${a(me)(e.token)} ${m.label}`,
@@ -21280,7 +21286,7 @@ const zC = { class: "dse:mb-2 dse:flex dse:items-baseline dse:justify-between" }
         e.target.token?.group === "color" ? (h(), A("span", {
           key: 0,
           class: "dse:size-3 dse:shrink-0 dse:rounded-min dse:border dse:border-border-strong",
-          style: Ie({ background: a(le)(e.target.token) })
+          style: Me({ background: a(le)(e.target.token) })
         }, null, 4)) : Y("", !0),
         T("span", c$, R(e.target.label), 1),
         e.target.token ? (h(), A("span", f$, R(a(le)(e.target.token)), 1)) : Y("", !0)
@@ -21529,7 +21535,7 @@ ${e.description ?? ""}`;
             e.item.contain && "dse:min-h-40 dse:transform-gpu"
           )
         ),
-        style: Ie(a(Qn).surface ? { background: a(Qn).surface } : void 0)
+        style: Me(a(Qn).surface ? { background: a(Qn).surface } : void 0)
       }, [
         O(La, { spec: e.item }, null, 8, ["spec"])
       ], 6),
@@ -21548,7 +21554,7 @@ ${e.description ?? ""}`;
       padding: "lg",
       class: "dse:flex dse:min-h-32 dse:items-center dse:justify-center",
       "data-playground": "",
-      style: Ie(a(Qn).surface ? { background: a(Qn).surface } : void 0),
+      style: Me(a(Qn).surface ? { background: a(Qn).surface } : void 0),
       "data-dse-component": e.section.playgroundName
     }, {
       default: E(() => [
@@ -21874,7 +21880,7 @@ ${e.description ?? ""}`;
               T("span", {
                 class: Ee(["dse:h-12 dse:rounded-control dse:border dse:border-border-default", a(hr)(v)]),
                 "data-token": v.name,
-                style: Ie({ background: a(le)(v) })
+                style: Me({ background: a(le)(v) })
               }, null, 14, Y$),
               T("span", X$, [
                 T("span", J$, R(a(me)(v)), 1),
@@ -21897,7 +21903,7 @@ ${e.description ?? ""}`;
               T("span", {
                 class: Ee(["dse:rounded-min", a(hr)(v)]),
                 "data-token": v.name,
-                style: Ie({
+                style: Me({
                   fontSize: i(a(le)(v)),
                   lineHeight: r(v) ? i(a(le)(r(v))) : void 0,
                   fontFamily: "var(--dse-host-font)"
@@ -21916,7 +21922,7 @@ ${e.description ?? ""}`;
               T("p", {
                 class: "dse:rounded-control dse:border dse:border-border-default dse:bg-secondary-background/60 dse:px-3",
                 "data-token": v.name,
-                style: Ie({
+                style: Me({
                   lineHeight: a(le)(v),
                   fontSize: v.parent && o(v.parent) ? i(a(le)(o(v.parent))) : void 0
                 })
@@ -21935,7 +21941,7 @@ ${e.description ?? ""}`;
               T("span", {
                 class: Ee(["dse:size-20 dse:border dse:border-border-strong dse:bg-card-background", a(hr)(v)]),
                 "data-token": v.name,
-                style: Ie({ borderRadius: i(a(le)(v)) })
+                style: Me({ borderRadius: i(a(le)(v)) })
               }, null, 14, lE),
               T("span", aE, R(a(me)(v)) + " · " + R(a(le)(v)) + " · " + R(s(v)) + "×", 1),
               O(gr, { token: v }, null, 8, ["token"])
@@ -21948,7 +21954,7 @@ ${e.description ?? ""}`;
               T("span", {
                 class: Ee(["dse:size-24 dse:rounded-card dse:bg-card-background-hover", a(hr)(v)]),
                 "data-token": v.name,
-                style: Ie({ boxShadow: i(a(le)(v)) })
+                style: Me({ boxShadow: i(a(le)(v)) })
               }, null, 14, dE),
               T("span", cE, R(a(me)(v)) + " · " + R(s(v)) + "×", 1),
               O(gr, { token: v }, null, 8, ["token"])
@@ -21964,11 +21970,11 @@ ${e.description ?? ""}`;
               }, [
                 T("span", {
                   class: "dse:block dse:size-full",
-                  style: Ie({ background: WE })
+                  style: Me({ background: WE })
                 }, null, 4),
                 T("span", {
                   class: "dse:absolute dse:inset-y-0 dse:right-0 dse:w-1/2 dse:border-l dse:border-border-strong",
-                  style: Ie({ backdropFilter: `blur(${a(le)(v)})` })
+                  style: Me({ backdropFilter: `blur(${a(le)(v)})` })
                 }, null, 4)
               ], 8, pE),
               T("span", mE, R(a(me)(v)) + " · " + R(a(le)(v)) + " · " + R(s(v)) + "×", 1)
@@ -21996,7 +22002,7 @@ ${e.description ?? ""}`;
               T("span", bE, [
                 T("span", {
                   class: "dse:absolute dse:-top-1 dse:left-0 dse:size-3 dse:rounded-full dse:bg-base-foreground dse:transition-[left] dse:duration-700 dse:group-hover:left-[calc(100%-12px)]",
-                  style: Ie({ transitionTimingFunction: i(a(le)(v)) })
+                  style: Me({ transitionTimingFunction: i(a(le)(v)) })
                 }, null, 4)
               ]),
               T("span", xE, R(a(me)(v)) + " · " + R(s(v)) + "×", 1),
@@ -22024,7 +22030,7 @@ ${e.description ?? ""}`;
               T("span", {
                 class: "dse:text-heading",
                 "data-token": v.name,
-                style: Ie({
+                style: Me({
                   fontFamily: y.ns.preview === "font" ? a(le)(v) : void 0,
                   fontWeight: y.ns.preview === "weight" ? a(le)(v) : void 0,
                   letterSpacing: y.ns.preview === "tracking" ? a(le)(v) : void 0,
@@ -22043,7 +22049,7 @@ ${e.description ?? ""}`;
                 T("span", {
                   class: "dse:block dse:h-full dse:rounded-min dse:bg-inverted-background",
                   "data-token": v.name,
-                  style: Ie({ width: f(y.tokens, v) })
+                  style: Me({ width: f(y.tokens, v) })
                 }, null, 12, IE)
               ])
             ]))), 128))
@@ -22055,7 +22061,7 @@ ${e.description ?? ""}`;
               T("span", {
                 class: "dse:h-20 dse:rounded-control dse:border dse:border-border-strong dse:bg-secondary-background",
                 "data-token": v.name,
-                style: Ie({ aspectRatio: a(le)(v) })
+                style: Me({ aspectRatio: a(le)(v) })
               }, null, 12, DE),
               T("span", FE, R(a(me)(v)) + " · " + R(a(le)(v)), 1)
             ]))), 128))
@@ -22087,7 +22093,7 @@ ${e.description ?? ""}`;
               T("span", KE, R(y) + " · " + R(y * p.value) + "px", 1),
               T("span", {
                 class: "dse:h-3 dse:rounded-min dse:bg-inverted-background",
-                style: Ie({ width: `${y * p.value}px` })
+                style: Me({ width: `${y * p.value}px` })
               }, null, 4)
             ])), 64))
           ])
